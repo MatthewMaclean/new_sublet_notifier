@@ -31,6 +31,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'mechanize==0.2.5',
+        'requests==2.4.3',
     ],
     test_suite='unittest2.collector',
     tests_require=[
