@@ -32,6 +32,7 @@ setup(
     install_requires=[
         'mechanize==0.2.5',
         'requests==2.4.3',
+        'beautifulsoup4==4.2.0',
     ],
     test_suite='unittest2.collector',
     tests_require=[

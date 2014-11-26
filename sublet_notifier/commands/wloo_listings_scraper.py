@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from re import findall
 from urllib2 import urlopen
 
@@ -36,7 +37,13 @@ class WlooListingsScraper:
             self.SEARCH_URL,
             page)).read()
 
-        return findall(r"\?rentalId=(\d+)", page_contents)
+        soup = BeautifulSoup(page_contents)
+        rental_contents = "\n".join(
+            [tag.prettify() for tag in soup.find_all(id="Rentals")])
+
+        return findall(
+            r"href=\"\/Listings\/Details\/Show\?rentalId=(\d+)",
+            rental_contents)
 
     def __generate_urls_from_ids(self, ids):
         urls = []
