@@ -1,6 +1,7 @@
+from time import sleep
+
 from sublet_notifier.commands.wloo_listings_scraper import WlooListingsScraper
 from sublet_notifier.email import send_email
-from time import sleep
 
 
 def main():
