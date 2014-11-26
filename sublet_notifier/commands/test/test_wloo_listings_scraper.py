@@ -13,7 +13,7 @@ class WeeklyWinnerTest(TestCase):
                 if page != 1:
                     raise Exception("Invalid page")
 
-                return ["1"]
+                return [1]
 
         scraper = TestWlooListingsScraper()
         self.assertEqual([self.get_url_path("1")], scraper.get_sublets())
@@ -32,3 +32,14 @@ class WeeklyWinnerTest(TestCase):
         self.assertEqual(
             [self.get_url_path(id) for id in xrange(0, 65)],
             scraper.get_sublets())
+
+    def test_duplicate_listing(self):
+        class TestWlooListingsScraper(WlooListingsScraper):
+            def _get_ids(self, page):
+                if page != 1:
+                    raise Exception("Invalid page")
+
+                return [1, 1]
+
+        scraper = TestWlooListingsScraper()
+        self.assertEqual([self.get_url_path("1")], scraper.get_sublets())
